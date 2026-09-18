@@ -55,6 +55,10 @@ body{background:radial-gradient(circle at 75% 8%,rgba(69,240,111,.07),transparen
 .skip-link{position:fixed;left:16px;top:12px;z-index:100;transform:translateY(-150%);background:var(--red);color:#071008;padding:11px 16px;border-radius:10px;font-weight:700;transition:transform .2s}.skip-link:focus{transform:translateY(0)}
 a:focus-visible{outline:3px solid #fff;outline-offset:4px}.button:focus-visible{outline-color:#fff}.button-secondary{background:transparent;color:var(--ink);border:1px solid rgba(69,240,111,.72);box-shadow:none}.button-secondary:hover{background:rgba(69,240,111,.1);box-shadow:none}.hero-actions{flex-wrap:wrap;gap:14px}.hero-actions .text-link{margin-left:14px}.proof-grid b{font-variant-numeric:tabular-nums}
 @media(max-width:480px){.header-actions .button-small{min-height:44px;padding:10px}.social-links a{width:44px;height:44px}.hero-actions{flex-direction:row;align-items:center;gap:12px}.hero-actions .text-link{display:none}.mobile-explore{display:inline-block;margin-top:22px}.nav{height:72px}}
+
+/* Community guestbook */
+.guestbook{position:relative;overflow:hidden;background:#111512;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.guestbook:before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;background:rgba(69,240,111,.08);filter:blur(10px);right:-140px;top:-210px;pointer-events:none}.guestbook-grid{position:relative;display:grid;grid-template-columns:1fr .85fr;gap:80px;align-items:center}.guestbook-copy>p:last-child{color:var(--muted);font-size:18px;max-width:540px;margin:24px 0 0}.guestbook-card{background:#090b0a;border:1px solid #2d3730;border-radius:24px;padding:34px;box-shadow:0 24px 60px rgba(0,0,0,.24)}.guestbook-count{display:flex;align-items:baseline;gap:10px;margin-bottom:22px}.guestbook-count strong{font:700 clamp(48px,6vw,76px)/1 "Space Grotesk",sans-serif;color:var(--red);letter-spacing:-3px;font-variant-numeric:tabular-nums}.guestbook-count span{color:var(--muted);font-size:14px}.guestbook-button{width:100%;border:0;cursor:pointer;font:700 16px "DM Sans",sans-serif}.guestbook-button:disabled{cursor:default;opacity:.72;transform:none}.guestbook-note{min-height:20px;margin:13px 0 0;color:var(--muted);font-size:12px;text-align:center}.guestbook-note.success{color:var(--red)}
+@media(max-width:850px){.guestbook-grid{grid-template-columns:1fr;gap:34px}.guestbook-card{max-width:520px;width:100%}}@media(max-width:480px){.guestbook-card{padding:26px 22px;border-radius:20px}.guestbook-count strong{font-size:54px}.guestbook-copy>p:last-child{font-size:16px}.guestbook-button{min-height:52px}}
 </style>
 </head>
 <body>
@@ -167,6 +171,22 @@ a:focus-visible{outline:3px solid #fff;outline-offset:4px}.button:focus-visible{
       </div>
     </section>
 
+
+    <section class="section guestbook" id="guestbook">
+      <div class="shell guestbook-grid">
+        <div class="guestbook-copy">
+          <p class="eyebrow"><span></span> The guestbook</p>
+          <h2>Leave your mark.</h2>
+          <p>No sign-up. No speech. Just tap the button and join everyone who stopped by.</p>
+        </div>
+        <div class="guestbook-card">
+          <div class="guestbook-count" aria-live="polite"><strong id="guestbook-count">0</strong><span>people were here</span></div>
+          <button class="button guestbook-button" id="guestbook-button" type="button">I was here!</button>
+          <p class="guestbook-note" id="guestbook-note">One tap. Permanent bragging rights.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="section shell contact" id="contact">
       <div>
         <p class="eyebrow"><span></span> Work together</p>
@@ -186,5 +206,36 @@ a:focus-visible{outline:3px solid #fff;outline-offset:4px}.button:focus-visible{
       <div><a href="https://youtube.com/@talktechtive" target="_blank" rel="noreferrer">YouTube</a><a href="mailto:business.talktechtive@gmail.com">Email</a></div>
     </div>
   </footer>
+
+  <script>
+  (() => {
+    const endpoint = 'https://countapi.mileshilliard.com/api/v1';
+    const key = 'talktechtive_guestbook_v1';
+    const count = document.getElementById('guestbook-count');
+    const button = document.getElementById('guestbook-button');
+    const note = document.getElementById('guestbook-note');
+    const joined = localStorage.getItem(key) === 'joined';
+    const showCount = value => { count.textContent = Number(value || 0).toLocaleString('en-IN'); };
+    const setJoined = () => { button.textContent = 'You were here ✓'; button.disabled = true; note.textContent = 'Your mark is on the wall.'; note.classList.add('success'); };
+    if (joined) setJoined();
+    fetch(`${endpoint}/get/${key}`).then(response => response.ok ? response.json() : { value: 0 }).then(data => showCount(data.value)).catch(() => { note.textContent = 'The tally is taking a quick break.'; });
+    button.addEventListener('click', async () => {
+      button.disabled = true;
+      button.textContent = 'Leaving your mark…';
+      try {
+        const response = await fetch(`${endpoint}/hit/${key}`);
+        if (!response.ok) throw new Error('Counter unavailable');
+        const data = await response.json();
+        showCount(data.value);
+        localStorage.setItem(key, 'joined');
+        setJoined();
+      } catch (error) {
+        button.disabled = false;
+        button.textContent = 'I was here!';
+        note.textContent = 'Could not add your mark. Try again in a moment.';
+      }
+    });
+  })();
+  </script>
 </body>
 </html>
