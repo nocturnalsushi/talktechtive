@@ -54,7 +54,7 @@ body{background:radial-gradient(circle at 75% 8%,rgba(69,240,111,.07),transparen
 /* Accessibility and maintenance release */
 .skip-link{position:fixed;left:16px;top:12px;z-index:100;transform:translateY(-150%);background:var(--red);color:#071008;padding:11px 16px;border-radius:10px;font-weight:700;transition:transform .2s}.skip-link:focus{transform:translateY(0)}
 a:focus-visible{outline:3px solid #fff;outline-offset:4px}.button:focus-visible{outline-color:#fff}.button-secondary{background:transparent;color:var(--ink);border:1px solid rgba(69,240,111,.72);box-shadow:none}.button-secondary:hover{background:rgba(69,240,111,.1);box-shadow:none}.hero-actions{flex-wrap:wrap;gap:14px}.hero-actions .text-link{margin-left:14px}.proof-grid b{font-variant-numeric:tabular-nums}
-@media(max-width:480px){.header-actions .button-small{min-height:44px;padding:10px}.social-links a{width:44px;height:44px}.hero-actions{flex-direction:row;align-items:center;gap:12px}.hero-actions .text-link{width:100%;margin:4px 0 0}.nav{height:72px}}
+@media(max-width:480px){.header-actions .button-small{min-height:44px;padding:10px}.social-links a{width:44px;height:44px}.hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px}.hero-actions>.button:first-child{grid-column:1/-1}.hero-actions>.button{width:100%}.hero-actions .text-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:54px;margin:0;padding:14px 10px;border:1px solid rgba(69,240,111,.72);border-radius:12px}.nav{height:72px}}
 </style>
 </head>
 <body>
