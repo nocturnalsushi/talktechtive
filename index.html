@@ -59,6 +59,9 @@ a:focus-visible{outline:3px solid #fff;outline-offset:4px}.button:focus-visible{
 /* Community guestbook */
 .guestbook{position:relative;overflow:hidden;background:#111512;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.guestbook:before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;background:rgba(69,240,111,.08);filter:blur(10px);right:-140px;top:-210px;pointer-events:none}.guestbook-grid{position:relative;display:grid;grid-template-columns:1fr .85fr;gap:80px;align-items:center}.guestbook-copy>p:last-child{color:var(--muted);font-size:18px;max-width:540px;margin:24px 0 0}.guestbook-card{background:#090b0a;border:1px solid #2d3730;border-radius:24px;padding:34px;box-shadow:0 24px 60px rgba(0,0,0,.24)}.guestbook-count{display:flex;align-items:baseline;gap:10px;margin-bottom:22px}.guestbook-count strong{font:700 clamp(48px,6vw,76px)/1 "Space Grotesk",sans-serif;color:var(--red);letter-spacing:-3px;font-variant-numeric:tabular-nums}.guestbook-count span{color:var(--muted);font-size:14px}.guestbook-button{width:100%;border:0;cursor:pointer;font:700 16px "DM Sans",sans-serif}.guestbook-button:disabled{cursor:default;opacity:.72;transform:none}.guestbook-note{min-height:20px;margin:13px 0 0;color:var(--muted);font-size:12px;text-align:center}.guestbook-note.success{color:var(--red)}
 @media(max-width:850px){.guestbook-grid{grid-template-columns:1fr;gap:34px}.guestbook-card{max-width:520px;width:100%}}@media(max-width:480px){.guestbook-card{padding:26px 22px;border-radius:20px}.guestbook-count strong{font-size:54px}.guestbook-copy>p:last-child{font-size:16px}.guestbook-button{min-height:52px}}
+
+/* Casual image-save deterrence: images are not selectable, draggable, or long-press/right-click targets. Devtools can still fetch the files. */
+img{pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-user-drag:none}
 </style>
 </head>
 <body>
@@ -238,6 +241,12 @@ a:focus-visible{outline:3px solid #fff;outline-offset:4px}.button:focus-visible{
       }
     });
   })();
+  </script>
+
+  <script>
+  // Deter casual image saving: suppress right-click and drag on images themselves.
+  document.addEventListener('contextmenu', event => { if (event.target instanceof HTMLImageElement) event.preventDefault(); });
+  document.addEventListener('dragstart', event => { if (event.target instanceof HTMLImageElement) event.preventDefault(); });
   </script>
 </body>
 </html>
