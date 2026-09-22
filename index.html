@@ -62,6 +62,10 @@ a:focus-visible{outline:3px solid #fff;outline-offset:4px}.button:focus-visible{
 
 /* Casual image-save deterrence: images are not selectable, draggable, or long-press/right-click targets. Devtools can still fetch the files. */
 img{pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-user-drag:none}
+
+/* Intro link on the existing hero photo */
+.hero-photo-link{display:block;cursor:pointer;transition:transform .2s,filter .2s}.hero-photo-link:hover{transform:rotate(3deg) scale(1.02);filter:brightness(1.04)}.hero-photo-link:focus-visible{outline:3px solid var(--red);outline-offset:7px}.hero-photo-callout{position:absolute;right:-8px;bottom:34px;z-index:6;display:flex;align-items:center;gap:10px;color:var(--red);font:700 13px "Space Grotesk",sans-serif;letter-spacing:.2px;transform:rotate(-3deg)}.hero-photo-callout svg{width:52px;height:29px;overflow:visible}.hero-photo-callout path{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:850px){.hero-photo-callout{right:0;bottom:22px}}@media(max-width:480px){.hero-photo-callout{right:3px;bottom:12px;font-size:11px;gap:7px}.hero-photo-callout svg{width:42px;height:24px}}
 </style>
 </head>
 <body>
@@ -107,10 +111,13 @@ img{pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-touch-
       <div class="hero-visual" aria-label="Talktechtive channel identity">
         <div class="orbit orbit-one"></div>
         <div class="orbit orbit-two"></div>
-        <div class="logo-card">
+        <a class="logo-card hero-photo-link" href="https://youtu.be/TShuC40djck" target="_blank" rel="noreferrer" aria-label="Tap here to know more about Talktechtive on YouTube">
           <img src="https://yt3.googleusercontent.com/IfbS05gB3mBijubS4YEUPNfesTpYkl_nOZjyeXNJMN8Lqn3E1FXqcwP1InyPnSwUq941T7HNww=s900-c-k-c0x00ffffff-no-rj" alt="Rushi Ballamajalu, creator of Talktechtive" width="900" height="900" fetchpriority="high">
-        </div>
-        
+        </a>
+        <a class="hero-photo-callout" href="https://youtu.be/TShuC40djck" target="_blank" rel="noreferrer" aria-label="Tap here to know more on YouTube">
+          <span>Tap here to know more</span>
+          <svg viewBox="0 0 52 29" aria-hidden="true"><path d="M50 4C39 4 26 8 17 18M17 18l2-8M17 18l8 1"/></svg>
+        </a>
       </div>
     </section>
 
