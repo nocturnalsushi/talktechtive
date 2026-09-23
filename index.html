@@ -64,7 +64,8 @@ a:focus-visible{outline:3px solid #fff;outline-offset:4px}.button:focus-visible{
 img{pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-user-drag:none}
 
 /* Intro link on the existing hero photo */
-.hero-photo-link{display:block;cursor:pointer;transition:transform .2s,filter .2s}.hero-photo-link:hover{transform:rotate(3deg) scale(1.02);filter:brightness(1.04)}.hero-photo-link:focus-visible{outline:3px solid var(--red);outline-offset:7px}.hero-photo-callout{position:absolute;right:-8px;bottom:34px;z-index:6;display:flex;align-items:center;gap:10px;color:var(--red);font:700 13px "Space Grotesk",sans-serif;letter-spacing:.2px;transform:rotate(-3deg)}.hero-photo-callout svg{width:52px;height:29px;overflow:visible}.hero-photo-callout path{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hero-photo-link{display:block;cursor:pointer;transition:transform .2s,filter .2s}.hero-photo-link:hover{transform:rotate(3deg) scale(1.02);filter:brightness(1.04)}.hero-photo-link:focus-visible{outline:3px solid var(--red);outline-offset:7px}.hero-photo-callout{position:absolute;right:-8px;bottom:34px;z-index:6;display:flex;align-items:center;gap:10px;color:var(--red);font:700 13px "Space Grotesk",sans-serif;letter-spacing:.2px;transform:rotate(-3deg)}.hero-photo-callout{flex-direction:column;align-items:flex-start;gap:3px}.hero-photo-callout svg{width:52px;height:29px;overflow:visible;margin-left:-14px}.hero-photo-callout path{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.about-trailer{position:relative;width:100%;max-width:820px;aspect-ratio:16/9;margin-top:10px;border-radius:22px;overflow:hidden;background:#111512;border:1px solid rgba(69,240,111,.18);box-shadow:0 25px 60px rgba(0,0,0,.35)}.about-trailer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 @media(max-width:850px){.hero-photo-callout{right:0;bottom:22px}}@media(max-width:480px){.hero-photo-callout{right:3px;bottom:12px;font-size:11px;gap:7px}.hero-photo-callout svg{width:42px;height:24px}}
 </style>
 </head>
@@ -115,8 +116,8 @@ img{pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-touch-
           <img src="https://yt3.googleusercontent.com/IfbS05gB3mBijubS4YEUPNfesTpYkl_nOZjyeXNJMN8Lqn3E1FXqcwP1InyPnSwUq941T7HNww=s900-c-k-c0x00ffffff-no-rj" alt="Rushi Ballamajalu, creator of Talktechtive" width="900" height="900" fetchpriority="high">
         </a>
         <a class="hero-photo-callout" href="https://youtu.be/TShuC40djck" target="_blank" rel="noreferrer" aria-label="Tap here to know more on YouTube">
+          <svg viewBox="0 0 52 29" aria-hidden="true"><path d="M44 27C42 15 29 7 6 5M6 5l7-5M6 5l7 6"/></svg>
           <span>Tap here to know more</span>
-          <svg viewBox="0 0 52 29" aria-hidden="true"><path d="M50 4C39 4 26 8 17 18M17 18l2-8M17 18l8 1"/></svg>
         </a>
       </div>
     </section>
@@ -178,6 +179,7 @@ img{pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-touch-
         </div>
         <div class="about-copy">
           <p class="about-lede">Talktechtive is for people who want to know what a device is actually like to own.</p>
+          <div class="about-trailer"><iframe src="https://www.youtube-nocookie.com/embed/TShuC40djck?rel=0" title="Talktechtive channel trailer" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
         </div>
       </div>
     </section>
