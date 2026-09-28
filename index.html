@@ -70,6 +70,12 @@ img{pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-touch-
 .hero-photo-link{display:block;cursor:pointer;transition:transform .2s,filter .2s}.hero-photo-link:hover{transform:rotate(3deg) scale(1.02);filter:brightness(1.04)}.hero-photo-link:focus-visible{outline:3px solid var(--red);outline-offset:7px}.hero-photo-stack{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;gap:0}.hero-photo-callout{position:relative;z-index:4;display:inline-block;padding:12px 26px;color:var(--red);font:700 13px "Space Grotesk",sans-serif;letter-spacing:.2px;transform:rotate(-3deg)}.hero-photo-callout:hover{text-decoration:underline;text-underline-offset:4px}
 .about-trailer{position:relative;width:100%;max-width:820px;aspect-ratio:16/9;margin:10px auto 0;border-radius:22px;overflow:hidden;background:#111512;border:1px solid rgba(69,240,111,.18);box-shadow:0 25px 60px rgba(0,0,0,.35)}.about-trailer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 @media(max-width:480px){.hero-photo-callout{font-size:12px;padding:10px 18px}}
+/* Featured Short: preserve the existing Shorts card and color system. */
+.shorts-feature{grid-template-columns:minmax(180px,225px) 1fr;gap:38px}
+.shorts-player{width:100%;aspect-ratio:9/16;border:1px solid #34483a;border-radius:18px;overflow:hidden;background:#050706}
+.shorts-player iframe{display:block;width:100%;height:100%;border:0}
+.shorts-feature h3{line-height:1.2}
+@media(max-width:480px){.shorts-feature{grid-template-columns:1fr}.shorts-player{width:min(100%,225px);margin:auto}}
 </style>
 </head>
 <body>
@@ -126,12 +132,12 @@ img{pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-touch-
       </div>
     </section>
 
-    <section class="proof-strip" aria-label="Current YouTube analytics, checked September 23, 2026">
+    <section class="proof-strip" aria-label="Current YouTube analytics, checked September 28, 2026">
       <!-- WEEKLY_ANALYTICS_START: update only the three values below from YouTube Studio -->
-      <div class="shell proof-grid" data-analytics-checked="2026-09-23T14:38:00+05:30">
-        <p><b data-metric="subscribers">301</b><span>Subscribers</span></p>
-        <p><b data-metric="lifetime-views">43,058</b><span>Views · Lifetime · 23rd Sept '26</span></p>
-        <p><b data-metric="published-videos">7</b><span>Videos published · Lifetime · 23rd Sept '26</span></p>
+      <div class="shell proof-grid" data-analytics-checked="2026-09-28T05:46:00+05:30">
+        <p><b data-metric="subscribers">308</b><span>Subscribers</span></p>
+        <p><b data-metric="lifetime-views">44,559</b><span>Views · Lifetime · 28th Sept '26</span></p>
+        <p><b data-metric="published-videos">7</b><span>Videos published · Lifetime · 28th Sept '26</span></p>
       </div>
       <!-- WEEKLY_ANALYTICS_END -->
     </section>
@@ -166,11 +172,11 @@ img{pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-touch-
       <div class="shell shorts-grid">
         <div>
           <p class="eyebrow light"><span></span> Shorts</p>
-          <h2>Quick takes.<br>Coming soon.</h2>
+          <h2>Quick takes.<br>Now playing.</h2>
         </div>
-        <div class="shorts-empty">
-          <div class="phone-outline"><span>▶</span></div>
-          <div><h3>A home for short-form reviews</h3><p>Fast tips, software finds and everyday tech observations will live here when Talktechtive Shorts begin.</p><a class="text-link light-link" href="https://youtube.com/@talktechtive?sub_confirmation=1" target="_blank" rel="noreferrer">Subscribe for the first one <span aria-hidden="true">↗</span></a></div>
+        <div class="shorts-empty shorts-feature">
+          <div class="shorts-player"><iframe src="https://www.youtube-nocookie.com/embed/eJYg4Ytog4Y?rel=0" title="What is Talktechtive? Who is this? Why is this?" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+          <div><h3>What is Talktechtive?</h3><p>Who is this? Why is this? Meet the people behind the channel in 56 seconds.</p><a class="text-link light-link" href="https://youtube.com/shorts/eJYg4Ytog4Y" target="_blank" rel="noreferrer">Watch the Short <span aria-hidden="true">↗</span></a></div>
         </div>
       </div>
     </section>
