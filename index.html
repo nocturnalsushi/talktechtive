@@ -86,6 +86,7 @@ img{pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-touch-
 </style>
 <style>
 /* Shorts carousel / marquee */
+.shorts-feature .text-link{color:var(--red);border-color:var(--red)}
 .shorts-section{padding-bottom:0}
 .shorts-section .shorts-older{display:block;overflow-x:auto;scrollbar-width:none}
 .shorts-section .shorts-older::-webkit-scrollbar{display:none}
@@ -95,7 +96,7 @@ img{pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-touch-
 .shorts-section .shorts-older{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
 .shorts-section .shorts-older::-webkit-scrollbar{display:none}
 .shorts-section .shorts-track{animation:none;width:max-content}
-.shorts-section .shorts-track .short-mini{flex:0 0 82vw;max-width:340px;scroll-snap-align:start}
+.shorts-section .shorts-track .short-mini{flex:0 0 82vw;max-width:340px;scroll-snap-align:center}
 .shorts-section .shorts-track .short-mini[aria-hidden="true"]{display:none}
 }
 @media(prefers-reduced-motion:reduce){
