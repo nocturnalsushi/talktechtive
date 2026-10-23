@@ -84,6 +84,43 @@ img{pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-touch-
 .nav-badge{display:inline-flex;align-items:center;flex:none;opacity:.86;transition:opacity .2s}.nav-badge:hover,.nav-badge:focus-visible{opacity:1}.nav-badge img{display:block;width:150px;height:auto;max-height:34px}
 @media(min-width:851px) and (max-width:1100px){.nav-links{gap:18px}.nav-badge img{width:120px}}
 </style>
+<style>
+/* Shorts carousel / marquee */
+.shorts-section .shorts-older{display:block;overflow:hidden}
+.shorts-section .shorts-track{display:flex;gap:16px;width:max-content;animation:shorts-marquee 45s linear infinite}
+.shorts-section .shorts-older:hover .shorts-track,.shorts-section .shorts-older:focus-within .shorts-track{animation-play-state:paused}
+.shorts-section .shorts-track .short-mini{flex:0 0 380px;grid-template-columns:100px 1fr}
+@keyframes shorts-marquee{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 8px))}}
+@media(max-width:850px){
+.shorts-section .shorts-older{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.shorts-section .shorts-older::-webkit-scrollbar{display:none}
+.shorts-section .shorts-track{animation:none;width:max-content}
+.shorts-section .shorts-track .short-mini{flex:0 0 82vw;max-width:340px;scroll-snap-align:start}
+.shorts-section .shorts-track .short-mini[aria-hidden="true"]{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+.shorts-section .shorts-older{overflow-x:auto}
+.shorts-section .shorts-track{animation:none}
+.shorts-section .shorts-track .short-mini[aria-hidden="true"]{display:none}
+}
+</style>
+<style>
+.shorts-carousel{grid-column:1/-1;position:relative;min-width:0;max-width:100%}
+.swipe-hint{display:none}
+@media(max-width:850px){
+.swipe-hint{display:block;position:absolute;top:50%;width:34px;height:34px;margin-top:-17px;border-radius:50%;background:rgba(9,11,10,.78);border:1px solid #34483a;backdrop-filter:blur(4px);pointer-events:none;opacity:0;transition:opacity .3s ease;z-index:2}
+.swipe-hint::after{content:"";position:absolute;top:50%;left:50%;border-style:solid}
+.swipe-hint-r{right:8px}
+.swipe-hint-l{left:8px}
+.swipe-hint-r::after{margin:-6px 0 0 -3px;border-width:6px 0 6px 10px;border-color:transparent transparent transparent #45f06f}
+.swipe-hint-l::after{margin:-6px 0 0 -7px;border-width:6px 10px 6px 0;border-color:transparent #45f06f transparent transparent}
+.shorts-carousel.can-right .swipe-hint-r{opacity:1;animation:swipe-nudge-r 1.8s ease-in-out infinite}
+.shorts-carousel.can-left .swipe-hint-l{opacity:1;animation:swipe-nudge-l 1.8s ease-in-out infinite}
+@keyframes swipe-nudge-r{50%{transform:translateX(4px)}}
+@keyframes swipe-nudge-l{50%{transform:translateX(-4px)}}
+}
+@media(prefers-reduced-motion:reduce){.swipe-hint{animation:none!important}}
+</style>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -156,14 +193,16 @@ img{pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-touch-
       <div class="shell shorts-grid">
         <div>
           <p class="eyebrow light"><span></span> Shorts</p>
-          <h2>Tech Thoughts<br><span style="color:#00ffa3">Talktechtive</span></h2>
+          <h2>Quick takes:</h2>
         </div>
         <div class="shorts-list">
           <div class="shorts-empty shorts-feature">
             <div class="shorts-player"><iframe src="https://www.youtube-nocookie.com/embed/4ZFPqVTvrWo?rel=0" title="Two lakh rupees for an Oppo??" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
             <div><h3>Two lakh rupees for an Oppo??</h3><a class="text-link light-link" href="https://www.youtube.com/shorts/4ZFPqVTvrWo" target="_blank" rel="noreferrer">Watch the Short <span aria-hidden="true">↗</span></a></div>
           </div>
-          <div class="shorts-older" aria-label="Older Shorts">
+          <div class="shorts-carousel">
+          <div class="shorts-older" aria-label="Recent Shorts">
+          <div class="shorts-track">
             <a class="short-mini" href="https://www.youtube.com/shorts/S4osOHBhWlQ" target="_blank" rel="noreferrer">
               <img src="https://i.ytimg.com/vi/S4osOHBhWlQ/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
               <div class="short-mini-copy"><h3>NVIDIA put a $399 robot microduck on stage for a reason</h3><span>Watch the Short ↗</span></div>
@@ -180,10 +219,26 @@ img{pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-touch-
               <img src="https://i.ytimg.com/vi/-S3Anjogw7E/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
               <div class="short-mini-copy"><h3>OnePlus 16 - A Power Bank with Cameras</h3><p>From an 18,000mAh brick to a 9,000mAh flagship. The OnePlus 16 battery arc in 90 seconds.</p><span>Watch the Short ↗</span></div>
             </a>
-            <a class="short-mini" href="https://www.youtube.com/shorts/eJYg4Ytog4Y" target="_blank" rel="noreferrer">
-              <img src="https://i.ytimg.com/vi/eJYg4Ytog4Y/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
-              <div class="short-mini-copy"><h3>What is Talktechtive? Who is this? Why is this?</h3><span>Watch the Short ↗</span></div>
+            <!-- marquee copies (desktop only) -->
+            <a class="short-mini" aria-hidden="true" tabindex="-1" href="https://www.youtube.com/shorts/S4osOHBhWlQ" target="_blank" rel="noreferrer">
+              <img src="https://i.ytimg.com/vi/S4osOHBhWlQ/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+              <div class="short-mini-copy"><h3>NVIDIA put a $399 robot microduck on stage for a reason</h3><span>Watch the Short ↗</span></div>
             </a>
+            <a class="short-mini" aria-hidden="true" tabindex="-1" href="https://www.youtube.com/shorts/XNzZWwL6_n4" target="_blank" rel="noreferrer">
+              <img src="https://i.ytimg.com/vi/XNzZWwL6_n4/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+              <div class="short-mini-copy"><h3>Tesla Roadster: Reality Check! (Part 2)</h3><span>Watch the Short ↗</span></div>
+            </a>
+            <a class="short-mini" aria-hidden="true" tabindex="-1" href="https://www.youtube.com/shorts/33u0HjJ928s" target="_blank" rel="noreferrer">
+              <img src="https://i.ytimg.com/vi/33u0HjJ928s/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+              <div class="short-mini-copy"><h3>Tesla Roadster: Hype VS Reality (Part 1)</h3><span>Watch the Short ↗</span></div>
+            </a>
+            <a class="short-mini" aria-hidden="true" tabindex="-1" href="https://youtube.com/shorts/-S3Anjogw7E" target="_blank" rel="noreferrer">
+              <img src="https://i.ytimg.com/vi/-S3Anjogw7E/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+              <div class="short-mini-copy"><h3>OnePlus 16 - A Power Bank with Cameras</h3><p>From an 18,000mAh brick to a 9,000mAh flagship. The OnePlus 16 battery arc in 90 seconds.</p><span>Watch the Short ↗</span></div>
+            </a>
+          </div>
+          </div>
+          <i class="swipe-hint swipe-hint-l" aria-hidden="true"></i><i class="swipe-hint swipe-hint-r" aria-hidden="true"></i>
           </div>
         </div>
       </div>
@@ -298,5 +353,14 @@ img{pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-touch-
   document.addEventListener('contextmenu', event => { if (event.target instanceof HTMLImageElement) event.preventDefault(); });
   document.addEventListener('dragstart', event => { if (event.target instanceof HTMLImageElement) event.preventDefault(); });
   </script>
+<script>
+(function(){var w=document.querySelector(".shorts-carousel");if(!w)return;var s=w.querySelector(".shorts-older");
+function u(){var m=s.scrollWidth-s.clientWidth;if(m<=2){w.classList.remove("can-left","can-right");return}
+w.classList.toggle("can-left",s.scrollLeft>8);
+var vis=0,t=s.querySelector(".shorts-track"),c=t.querySelectorAll(".short-mini:not([aria-hidden])");
+var last=c[c.length-1],lr=last.getBoundingClientRect().right,sr=s.getBoundingClientRect().right;
+w.classList.toggle("can-right",lr>sr+8)}
+s.addEventListener("scroll",u,{passive:true});window.addEventListener("resize",u);window.addEventListener("load",u);u()})();
+</script>
 </body>
 </html>
